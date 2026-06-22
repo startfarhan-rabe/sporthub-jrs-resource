@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRS直播 · 运动指南与访问手册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde7d9 0%, #ffd3b6 40%, #ffb994 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #2e241f;
+        }
+
+        .magazine-card {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(2px);
+            border-radius: 3rem 1.5rem 3rem 1.5rem;
+            box-shadow: 0 20px 40px -12px rgba(160, 80, 30, 0.25), 0 8px 24px rgba(255, 180, 120, 0.2);
+            padding: 2.8rem 2.5rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 230, 210, 0.7);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+            .magazine-card {
+                padding: 2rem 1.2rem;
+                border-radius: 2rem 1rem 2rem 1rem;
+            }
+        }
+
+        /* hero 横幅区 */
+        .hero-banner {
+            text-align: center;
+            margin-bottom: 2.8rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 2px dashed #f3cfb2;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #b45f3a, #8d3f1e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-banner .subhead {
+            font-size: 1.2rem;
+            color: #6b4c3b;
+            font-weight: 380;
+            background: #f1dccf;
+            display: inline-block;
+            padding: 0.2rem 1.8rem;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero-banner h1 {
+                font-size: 2rem;
+            }
+            .hero-banner .subhead {
+                font-size: 0.95rem;
+                padding: 0.2rem 1rem;
+            }
+        }
+
+        /* 背景说明 — 杂志引用块 */
+        .context-block {
+            background: #faf1ea;
+            padding: 1.4rem 1.8rem;
+            border-radius: 2rem 0.5rem 2rem 0.5rem;
+            margin-bottom: 2.2rem;
+            border-left: 4px solid #c07652;
+            font-size: 1rem;
+            color: #3f2c22;
+        }
+
+        .context-block p {
+            margin-bottom: 0.4rem;
+        }
+
+        .context-block strong {
+            color: #8d4526;
+        }
+
+        /* 三段自然介绍 */
+        .intro-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .intro-item {
+            background: #fffcf9;
+            padding: 1.2rem 1.6rem 1.4rem;
+            border-radius: 1.6rem 0.6rem 1.6rem 0.6rem;
+            box-shadow: 0 6px 14px rgba(150, 80, 40, 0.06);
+            transition: 0.2s;
+            border: 1px solid #f7e1d2;
+        }
+
+        .intro-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(170, 90, 45, 0.1);
+        }
+
+        .intro-item h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #96542f;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .intro-item h3::before {
+            content: "▍";
+            color: #c4764e;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .intro-item p {
+            color: #412e25;
+            font-size: 0.98rem;
+        }
+
+        .intro-item .highlight-link {
+            font-weight: 500;
+            color: #9d4e27;
+            text-decoration: none;
+            border-bottom: 1.5px dotted #cfa07e;
+            transition: 0.15s;
+            padding: 0 2px;
+        }
+
+        .intro-item .highlight-link:hover {
+            background: #f1d5c0;
+            border-bottom-style: solid;
+            border-radius: 6px;
+        }
+
+        /* 小贴士 / 访问 FAQ 摘要 */
+        .faq-mini {
+            background: #ffefe4;
+            border-radius: 1.8rem 0.8rem 1.8rem 0.8rem;
+            padding: 1.4rem 1.8rem;
+            margin-top: 1.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #edcbb7;
+        }
+
+        .faq-mini .faq-title {
+            font-weight: 600;
+            color: #7c4a30;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .faq-mini .faq-title::before {
+            content: "☕";
+            margin-right: 6px;
+            font-size: 1.2rem;
+        }
+
+        .faq-mini ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .faq-mini li {
+            padding: 0.5rem 0 0.5rem 1.6rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23a95f3a" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>') left center no-repeat;
+            background-size: 12px;
+            margin-bottom: 0.1rem;
+            color: #3b2a20;
+            font-size: 0.96rem;
+        }
+
+        .faq-mini li strong {
+            color: #955234;
+        }
+
+        /* 页尾访问提示 */
+        .footer-visit {
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e7cdbb;
+            text-align: center;
+        }
+
+        .footer-visit p {
+            font-size: 1rem;
+            color: #463229;
+            background: #f5e5db;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-visit .cta-sentence {
+            font-size: 1.15rem;
+            background: transparent;
+            padding: 0.2rem 0.5rem;
+        }
+
+        .footer-visit .cta-sentence a {
+            background: linear-gradient(145deg, #c8825c, #aa613d);
+            color: white;
+            text-decoration: none;
+            padding: 0.4rem 1.6rem;
+            border-radius: 60px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0 0.2rem;
+            box-shadow: 0 4px 10px rgba(170, 80, 30, 0.2);
+            transition: all 0.2s ease;
+            border: 1px solid #c4815b;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-visit .cta-sentence a:hover {
+            background: #9e572f;
+            box-shadow: 0 6px 16px rgba(150, 60, 15, 0.25);
+            transform: scale(1.02);
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #7b6254;
+            margin-top: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* 圆角按钮感链接 (正文内) */
+        .inline-button-link {
+            background: #f1d5c0;
+            padding: 0.15rem 0.9rem;
+            border-radius: 40px;
+            color: #6f3e24;
+            font-weight: 480;
+            text-decoration: none;
+            transition: 0.15s;
+            border: 1px solid #eacbb6;
+            white-space: nowrap;
+        }
+
+        .inline-button-link:hover {
+            background: #dfbca3;
+            color: #3f2418;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #edd9cb;
+            margin: 0.8rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="magazine-card">
+    <!-- 首页横幅 -->
+    <div class="hero-banner">
+        <h1>运动直播 · 简明指南</h1>
+        <div class="subhead">JRS直播 · 从观察到参与</div>
+        <div style="margin-top: 1rem; font-size: 0.9rem; color: #6b4f3d; letter-spacing: 0.3px;">背景说明 · 实时赛事场景</div>
+    </div>
+
+    <!-- 背景说明 -->
+    <div class="context-block">
+        <p><strong>搭建一个轻量的访问路径</strong> —— 对许多体育爱好者来说，快速定位到流畅的实时赛况是首要需求。围绕直播聚合与赛程导航，<strong>JRS直播</strong> 这一名称在社区内常被提及。本文档从资讯查找与访问习惯出发，梳理相关背景和注意点，帮助新接触的朋友更高效地利用网络资源。</p>
+    </div>
+
+    <!-- 三段自然介绍 （从简明指南和访问提醒展开）-->
+    <div class="intro-grid">
+        <div class="intro-item">
+            <h3>直播内容与覆盖</h3>
+            <p>涵盖足球、篮球、网球及电竞等主流项目，多数赛事提供多线路选择。频道列表通常按比赛时间排序，并附带实时比分与数据统计。对于计划跟随多场比赛的用户，提前了解不同直播源的延迟差异是有用的技巧。而 <a href="https://sporthub-jrs.com" class="highlight-link">JRS直播</a> 常常被作为聚合参考坐标，方便对比赛程。</p>
+        </div>
+        <div class="intro-item">
+            <h3>访问习惯与提醒</h3>
+            <p>由于直播域名或镜像地址可能随网络环境调整，建议通过书签或可信渠道获取最新链接。部分浏览器会拦截弹窗或自动播放，提前关闭此类限制能改善体验。在文章中嵌入指向 <a href="https://sporthub-jrs.com" class="inline-button-link">JRS直播</a> 的链接，仅作为信息索引，实际观看时请根据自身网络选择合适节点。</p>
+        </div>
+        <div class="intro-item">
+            <h3>社区与实用场景</h3>
+            <p>不少球迷会集中在讨论帖内交换实时链接与画质反馈，形成一种轻量的协作筛选。若某条线路卡顿，切换备用源是常见做法。在各类观赛指南中，<a href="https://sporthub-jrs.com" class="highlight-link">JRS直播</a> 往往会以入口角色出现，但更关键的是理解其背后的资源聚合逻辑，而非只依赖单一地址。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (杂志风小贴士) -->
+    <div class="faq-mini">
+        <div class="faq-title">常见提醒摘要</div>
+        <ul>
+            <li><strong>链接时效性</strong> – 镜像站可能变更，建议通过社区置顶帖校验；把 <a href="https://sporthub-jrs.com" style="color:#8d4526;text-decoration:underline dotted;">JRS直播</a> 作为搜索锚点而非唯一依赖。</li>
+            <li><strong>播放环境</strong> – 部分源需要关闭广告拦截或启用 Flash 备用；移动端可尝试桌面模式。</li>
+            <li><strong>安全提示</strong> – 避免下载任何弹窗插件，不输入个人账号信息；仅使用浏览器原生播放。</li>
+        </ul>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-visit">
+        <p class="cta-sentence">
+            🏟️ 想追踪赛事？可参考
+            <a href="https://sporthub-jrs.com">JRS直播</a>
+            作为信息起点
+        </p>
+        <p style="margin-top: 0.3rem; font-size: 0.9rem; color:#5d4537;">—— 根据网络情况调整，保持对直播源的独立判断</p>
+        <div class="footer-note">本页为纯介绍 · 不存储或分发任何流媒体内容</div>
+    </div>
+
+</div>
+
+</body>
+</html>
